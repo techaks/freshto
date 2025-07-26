@@ -6,6 +6,7 @@ const Categories = () => {
     const navigate = useNavigate();
   return (
     <div className="mt-8">
+        
       <h1 className="text-2xl font-bold mb-4">Categories</h1>
       <div className="flex justify-between content-center flex-wrap gap-4">
         {categories.map((category, index) => (
