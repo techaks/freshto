@@ -128,12 +128,7 @@ export const categories = [
     image: fresh_fruits_image,
     bgColor: "#FEE0E0",
   },
-  {
-    text: "Cold Drinks",
-    path: "Drinks",
-    image: bottles_image,
-    bgColor: "#F0F5DE",
-  },
+ 
   {
     text: "Instant Food",
     path: "Instant",
@@ -213,7 +208,89 @@ export const features = [
 
 export const dummyProducts = [
   // Vegetables
+   {
+    _id: "bk01a24z",
+    name: "Brown Bread 400g",
+    category: "Bakery",
+    price: 40,
+    offerPrice: 35,
+    image: [brown_bread_image],
+    description: [
+      "Soft and healthy",
+      "Made from whole wheat",
+      "Ideal for breakfast and sandwiches",
+    ],
+    createdAt: "2025-03-25T07:17:46.018Z",
+    updatedAt: "2025-03-25T07:18:13.103Z",
+    inStock: true,
+  },
+   {
+    _id: "in05j29q",
+    name: "Oats Noodles 72g",
+    category: "Instant",
+    price: 40,
+    offerPrice: 35,
+    image: [maggi_oats_image],
+    description: [
+      "Healthy alternative with oats",
+      "Good for digestion",
+      "Perfect for breakfast or snacks",
+    ],
+    createdAt: "2025-03-25T07:17:46.018Z",
+    updatedAt: "2025-03-25T07:18:13.103Z",
+    inStock: true,
+  },
+ 
   {
+    _id: "ek54j45k",
+    name: "Mango 1 kg",
+    category: "Fruits",
+
+    price: 150,
+    offerPrice: 140,
+    image: [mango_image_1],
+    description: [
+      "Sweet and flavorful",
+      "Perfect for smoothies and desserts",
+      "Rich in Vitamin A",
+    ],
+    createdAt: "2025-03-25T07:17:46.018Z",
+    updatedAt: "2025-03-25T07:18:13.103Z",
+    inStock: true,
+  },
+   {
+    _id: "in03h27s",
+    name: "Knorr Cup Soup 70g",
+    category: "Instant",
+    price: 35,
+    offerPrice: 30,
+    image: [knorr_soup_image],
+    description: [
+      "Convenient for on-the-go",
+      "Healthy and nutritious",
+      "Variety of flavors",
+    ],
+    createdAt: "2025-03-25T07:17:46.018Z",
+    updatedAt: "2025-03-25T07:18:13.103Z",
+    inStock: true,
+  },
+   {
+    _id: "ek64j45k",
+    name: "Fanta 1.5L",
+    category: "Drinks",
+    price: 77,
+    offerPrice: 72,
+    image: [fanta_image_1],
+    description: [
+      "Sweet and fizzy",
+      "Great for parties and gatherings",
+      "Best served cold",
+    ],
+    createdAt: "2025-03-25T07:17:46.018Z",
+    updatedAt: "2025-03-25T07:18:13.103Z",
+    inStock: true,
+  },
+   {
     _id: "gd46g23h",
     name: "Potato 500g",
     category: "Vegetables",
@@ -229,6 +306,8 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
+
+
   {
     _id: "gd47g34h",
     name: "Tomato 1 kg",
@@ -346,23 +425,7 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-  {
-    _id: "ek54j45k",
-    name: "Mango 1 kg",
-    category: "Fruits",
-
-    price: 150,
-    offerPrice: 140,
-    image: [mango_image_1],
-    description: [
-      "Sweet and flavorful",
-      "Perfect for smoothies and desserts",
-      "Rich in Vitamin A",
-    ],
-    createdAt: "2025-03-25T07:17:46.018Z",
-    updatedAt: "2025-03-25T07:18:13.103Z",
-    inStock: true,
-  },
+  
   {
     _id: "ek55j56k",
     name: "Grapes 500g",
@@ -512,22 +575,7 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-  {
-    _id: "ek64j45k",
-    name: "Fanta 1.5L",
-    category: "Drinks",
-    price: 77,
-    offerPrice: 72,
-    image: [fanta_image_1],
-    description: [
-      "Sweet and fizzy",
-      "Great for parties and gatherings",
-      "Best served cold",
-    ],
-    createdAt: "2025-03-25T07:17:46.018Z",
-    updatedAt: "2025-03-25T07:18:13.103Z",
-    inStock: true,
-  },
+ 
   {
     _id: "ek65j56k",
     name: "7 Up 1.5L",
@@ -628,22 +676,7 @@ export const dummyProducts = [
   },
 
   // Bakery
-  {
-    _id: "bk01a24z",
-    name: "Brown Bread 400g",
-    category: "Bakery",
-    price: 40,
-    offerPrice: 35,
-    image: [brown_bread_image],
-    description: [
-      "Soft and healthy",
-      "Made from whole wheat",
-      "Ideal for breakfast and sandwiches",
-    ],
-    createdAt: "2025-03-25T07:17:46.018Z",
-    updatedAt: "2025-03-25T07:18:13.103Z",
-    inStock: true,
-  },
+ 
   {
     _id: "bk02b30y",
     name: "Butter Croissant 100g",
@@ -743,22 +776,7 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-  {
-    _id: "in03h27s",
-    name: "Knorr Cup Soup 70g",
-    category: "Instant",
-    price: 35,
-    offerPrice: 30,
-    image: [knorr_soup_image],
-    description: [
-      "Convenient for on-the-go",
-      "Healthy and nutritious",
-      "Variety of flavors",
-    ],
-    createdAt: "2025-03-25T07:17:46.018Z",
-    updatedAt: "2025-03-25T07:18:13.103Z",
-    inStock: true,
-  },
+ 
   {
     _id: "in04i28r",
     name: "Yippee Noodles 260g",
@@ -775,22 +793,7 @@ export const dummyProducts = [
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
   },
-  {
-    _id: "in05j29q",
-    name: "Oats Noodles 72g",
-    category: "Instant",
-    price: 40,
-    offerPrice: 35,
-    image: [maggi_oats_image],
-    description: [
-      "Healthy alternative with oats",
-      "Good for digestion",
-      "Perfect for breakfast or snacks",
-    ],
-    createdAt: "2025-03-25T07:17:46.018Z",
-    updatedAt: "2025-03-25T07:18:13.103Z",
-    inStock: true,
-  },
+ 
 ];
 
 export const dummyAddress = [
