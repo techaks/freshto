@@ -5,7 +5,7 @@ import { UseAppContext } from "../context/AppContext";
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
-  const { user, setUser } = UseAppContext();
+  const { user, setUser ,setShowUserLogin ,setSearchQuery,searchQuery}  = UseAppContext();
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -30,6 +30,12 @@ const Navbar = () => {
         >
           Home
         </Link>
+         <Link
+          to="/products"
+          className=" font-semibold text-gray-700 hover:text-indigo-500 transition"
+        >
+          All Products
+        </Link>
         <Link
           to="/about"
           className=" font-semibold text-gray-700 hover:text-indigo-500 transition"
@@ -45,8 +51,10 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
           <input
+          onChange={(e) => {setSearchQuery(e.target.value); navigate('/products') }}
             className=" w-full bg-transparent outline-none placeholder-gray-500"
             type="text"
+            value={searchQuery}
             placeholder="Search products"
           />
 
@@ -97,7 +105,7 @@ const Navbar = () => {
         </div>
 
         {!user ? (
-          <p className="cursor-pointer px-10 py-2 bg-[#56A637] hover:bg-[#456637]  text-white rounded-full font-bold">
+          <p onClick={()=>setShowUserLogin(true)} className="cursor-pointer px-10 py-2 bg-[#56A637] hover:bg-[#456637]  text-white rounded-full font-bold">
             LOGIN
           </p>
         ) : (

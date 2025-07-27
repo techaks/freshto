@@ -1,4 +1,5 @@
 import { assets } from "../assets/assets";
+import FooterGlow from "./FooterGlow";
 
 
 
@@ -44,6 +45,7 @@ const Footer = () => {
             <p className="py-4 font-bold text-center text-sm md:text-base text-[#59a835]">
                 Copyright 2025 © FRESHTO All Right Reserved.
             </p>
+            {/* <FooterGlow/> */}
         </div>
     );
 };

@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { assets } from "../assets/assets";
 import { UseAppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const [count, setCount] = useState(0);
-  console.log(product);
+  const navigate = useNavigate();
 
   const {addToCart,updateCartQuantity,removeFromCart,cartItems} = UseAppContext();
 
   return (
     product && (
-      <div className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white min-w-56 max-w-56 w-full ">
+      <div onClick={()=>{navigate(`/product/${product.category.toLowerCase()}/${product._id}`) ; scrollTo(0,0)}} className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white min-w-56 max-w-56 w-full shadow-[0px_1px_3px_3px_rgba(0,_0,_0,_0.1)] ">
         <div className="group cursor-pointer flex items-center justify-center px-2">
           <img
             className="group-hover:scale-105 transition max-w-26 md:max-w-36"
@@ -38,9 +39,9 @@ const ProductCard = ({ product }) => {
           </div>
           <div className="flex items-end justify-between mt-3">
             <p className="md:text-xl text-base font-medium text-indigo-500">
-              ${product.offerPrice}{" "}
+              ₹{product.offerPrice}{" "}
               <span className="text-gray-500/60 md:text-sm text-xs line-through">
-                ${product.price}
+                ₹{product.price}
               </span>
             </p>
             <div onClick={(e)=>e.stopPropagation()} className="text-indigo-500">
