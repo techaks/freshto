@@ -24,7 +24,7 @@ export const AppContextProvider=({ children }) => {
             cartData[itemId] = 1;
         }
         setCartItems(cartData); 
-        alert("Item added to cart");
+        // alert("Item added to cart");
         console.log(cartData);
 
     }

@@ -10,6 +10,7 @@ import AllProduct from './Pages/AllProduct'
 import ScrollProgressBar from './component/Scroll'
 import ProductCategory from './Pages/ProductCategory'
 import ProductDetail from './component/ProductDetail'
+import CartPage from './Pages/CartPage'
 
 const App = () => {
   const {showUserlogin} = UseAppContext();
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Error/>} />
         <Route path='/products' element={<AllProduct/>}  />
+        <Route path='/cart' element={<CartPage/>}  />
         <Route path='/product/:category' element={<ProductCategory/>}/>
         <Route path='/product/:category/:id' element={<ProductDetail/>}/>
 

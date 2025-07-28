@@ -11,7 +11,7 @@ const Navbar = () => {
   const logout = async () => {
     setUser(null);
   };
-  console.log(totalCartPrice());
+  
   
 
   return (
@@ -85,7 +85,7 @@ const Navbar = () => {
           </svg>
         </div>
 
-        <div className="relative cursor-pointer" onClick={()=>navigate('/cart')}>
+        <div className="relative cursor-pointer cursor-pointer" onClick={()=>navigate('/cart')}>
           <svg
             width="18"
             height="18"

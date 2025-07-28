@@ -100,7 +100,7 @@ const ProductDetail = () => {
               >
                 Add to Cart
               </button>
-              <button className="w-full py-3.5 cursor-pointer font-medium bg-[#59a835] text-white hover:bg-[#80bb64] transition rounded-sm">
+              <button onClick={() => {addToCart(product._id) ; navigate('/cart')}} className="w-full py-3.5 cursor-pointer font-medium bg-[#59a835] text-white hover:bg-[#80bb64] transition rounded-sm">
                 Buy now
               </button>
             </div>
