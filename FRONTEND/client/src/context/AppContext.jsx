@@ -61,9 +61,35 @@ export const AppContextProvider=({ children }) => {
     },[])
 
 
+    //count cart items
+
+    const countCartItems = () => {
+        let count =0;
+        for(const item in cartItems){
+            count += cartItems[item];
+        }
+        return count;
+
+    }
+
+    //total cart price
+    const totalCartPrice = () => {
+        let total = 0 ; 
+        for(const item in cartItems){
+            const productItem = product.find((prod) => prod._id === item);
+            if(productItem){
+                total += productItem.offerPrice * cartItems[item];
+            }
+        }
+        return Math.floor(total);
+    }
+
+    
+
+
     const value={
         user,setUser,isSeller,setIsSeller,showUserlogin,setShowUserLogin,product
-     , addToCart,updateCartQuantity,removeFromCart,cartItems,searchQuery, setSearchQuery
+     , addToCart,updateCartQuantity,removeFromCart,cartItems,searchQuery, setSearchQuery , countCartItems , totalCartPrice
 
     }
 

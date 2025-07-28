@@ -5,12 +5,14 @@ import { UseAppContext } from "../context/AppContext";
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
-  const { user, setUser ,setShowUserLogin ,setSearchQuery,searchQuery}  = UseAppContext();
+  const { user, setUser ,setShowUserLogin ,setSearchQuery,searchQuery , countCartItems , totalCartPrice}  = UseAppContext();
   const navigate = useNavigate();
 
   const logout = async () => {
     setUser(null);
   };
+  console.log(totalCartPrice());
+  
 
   return (
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
@@ -100,7 +102,7 @@ const Navbar = () => {
           </svg>
 
           <button className="absolute -top-2 -right-3 text-xs text-white bg-[#56A637] w-[18px] h-[18px] rounded-full">
-            3
+            {countCartItems()}
           </button>
         </div>
 
