@@ -23,7 +23,7 @@ const ProductDetail = () => {
       );
       setRelatedProducts(productCopy.slice(0, 4));
     }
-  }, [products]);
+  }, [products , id]);
 
   useEffect(() => {
     setThumbnail(product?.image[0]);

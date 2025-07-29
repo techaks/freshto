@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { dummyProducts } from "../assets/assets";
+import toast from "react-hot-toast";
 
 export const AppContext = createContext();
 
@@ -11,11 +12,15 @@ export const AppContextProvider=({ children }) => {
     const [product,setProduct] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [searchQuery, setSearchQuery] = useState("");
-
+//    console.log(cartItems);
+   
     const fetchProducts = async () => {
         setProduct(dummyProducts)
     }
+
+
     //Add to cart function
+    
     const addToCart = (itemId) => {
         let cartData = structuredClone(cartItems);
         if(cartData[itemId]){
@@ -24,7 +29,8 @@ export const AppContextProvider=({ children }) => {
             cartData[itemId] = 1;
         }
         setCartItems(cartData); 
-        // alert("Item added to cart");
+        toast.success("Item added to cart");
+     
         console.log(cartData);
 
     }
@@ -34,9 +40,9 @@ export const AppContextProvider=({ children }) => {
         if(cartData[itemId]){
             cartData[itemId] = quantity;
             setCartItems(cartData);
-            alert("Cart updated successfully");
+           toast.success("Cart updated");
         }else{
-            alert("Item not found in cart");
+            toast.error("Item not found");
         }
     }
     //remove item from cart
@@ -50,8 +56,8 @@ export const AppContextProvider=({ children }) => {
 
         }
 
-           setCartItems(cartData);
-            alert("Item removed from cart");
+            setCartItems(cartData);
+            toast.success("Item removed ");
     }
 
 
@@ -64,7 +70,7 @@ export const AppContextProvider=({ children }) => {
     //count cart items
 
     const countCartItems = () => {
-        let count =0;
+        let count = 0 ;
         for(const item in cartItems){
             count += cartItems[item];
         }

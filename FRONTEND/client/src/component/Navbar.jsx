@@ -85,7 +85,7 @@ const Navbar = () => {
           </svg>
         </div>
 
-        <div className="relative cursor-pointer cursor-pointer" onClick={()=>navigate('/cart')}>
+        <div className="relative  cursor-pointer" onClick={()=>navigate('/cart')}>
           <svg
             width="18"
             height="18"
@@ -114,7 +114,7 @@ const Navbar = () => {
           <div className=" relative group">
             <img className="w-10 " src={assets.profile_icon} alt="" />
             <ul className="hidden group-hover:block absolute top-10 right-0 bg-white z-50 w-30 border border-gray-300 text-sm rounded-md cursor-pointer ">
-              <li className="hover:text-green-500 hover:bg-blue-50 px-3">
+              <li onClick={()=>navigate('/orders')} className="hover:text-green-500 hover:bg-blue-50 px-3">
                 My Orders
               </li>
               <li
