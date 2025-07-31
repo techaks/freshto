@@ -1,7 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { assets } from "../../assets/assets";
+import { UseAppContext } from "../../context/AppContext";
 
 const Dashboard = () => {
+
+    const {isSeller , setIsSeller} = UseAppContext();
+
+    const logout = async()=>{
+        setIsSeller(false)
+        
+    }
 
 
   const sidebarLinks = [
@@ -20,11 +28,16 @@ const Dashboard = () => {
         <img className="w-24 h-12" src={assets.food_logo} alt="" />
         <div className="flex items-center gap-5 text-gray-500">
           <p>Hi! Admin</p>
-          <button className="border rounded-full text-sm px-4 py-1">
+          <button onClick={logout} className="border rounded-full text-sm px-4 py-1 cursor-pointer hover:text-red-500 font-bold">
             Logout
           </button>
         </div>
       </div>
+
+
+ <div className="flex">
+
+ 
       <div className="md:w-64 w-16 border-r h-[550px] text-base border-gray-300 pt-4 flex flex-col transition-all duration-300">
         {sidebarLinks.map((item, index) => (
           <NavLink
@@ -43,6 +56,9 @@ const Dashboard = () => {
             <p className="md:block hidden text-center">{item.name}</p>
           </NavLink>
         ))}
+      </div>
+      {<Outlet/>}
+
       </div>
     </>
   );

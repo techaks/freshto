@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { UseAppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import Password from '../Password';
 
 const SellerLogin = () => {
 
@@ -60,6 +61,8 @@ const SellerLogin = () => {
     <button onClick={LoginHandel} type="submit" class="w-full mb-3 bg-[#59a835] hover:bg-[#74bb54] transition py-2.5 rounded text-white font-medium cursor-pointer">Log In</button>
     
 </form>
+
+
     </div>
   )
 }
