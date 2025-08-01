@@ -5,6 +5,8 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import userRoutes from './routes/userRoutes.js';
 import sellerRoute from './routes/sellerRoute.js';
+import cloudinaryConnect from './utility/Cloudinary.js';
+import productRouter from './routes/productRoute.js';
 
 
 
@@ -23,11 +25,16 @@ app.listen(PORT,()=>{
     DBConnect();
     console.log(`http://localhost:${PORT}`)
 })
+await cloudinaryConnect();
+
+
+
 app.get('/',(req,res)=>{
     res.send("Welcome to FreshTo")
 })
 
 app.use('/api/user',userRoutes);
 app.use('/api/seller',sellerRoute);
+app.use('/api/product',productRouter);
 
 
