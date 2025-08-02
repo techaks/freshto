@@ -1,16 +1,32 @@
 import { useEffect, useState } from "react";
 import { dummyOrders } from "../assets/assets";
+import { UseAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
+  const {user , axios} = UseAppContext();
 
   const fetchOrders = async () => {
-    setOrders(dummyOrders);
+
+    try {
+      const {data} = await axios.get('api/order/user');
+      if(data.success){
+        setOrders(data.orders)
+      }
+      
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error)
+      
+    }
+
   };
-  console.log(orders);
+  // console.log(orders);
 
   useEffect(() => {
-    fetchOrders();
+    if(user) {fetchOrders();}
+    
   }, []);
 
   return (
@@ -44,7 +60,7 @@ const MyOrders = () => {
                 <div className="flex gap-4 items-center">
                   <img
                     className="w-36 h-36"
-                    src={item.product.image[0]}
+                    src={item.product.images[0]}
                     alt="item"
                   />
                   <div>

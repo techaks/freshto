@@ -1,10 +1,12 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import { UseAppContext } from "../context/AppContext";
+import Spinner from "./Spinner";
 
 const Bestseller = () => {
   const { products } = UseAppContext();
-  return (
+
+  return products ? (
     <div className="mt-10">
       <p className="font-bold text-2xl mb-5">Best Sellers</p>
 
@@ -18,7 +20,7 @@ const Bestseller = () => {
         </div>
 
     </div>
-  );
+  ): <div><Spinner/></div>
 };
 
 export default Bestseller;

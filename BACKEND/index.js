@@ -15,7 +15,7 @@ import orderRouter from './routes/orderroute.js';
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173','http://10.127.239.7:5173'],
     credentials: true,
 
 }))
@@ -23,7 +23,8 @@ app.use(express.json());
 app.use(cookieParser())
 
 const PORT = process.env.PORT ||4000
-app.listen(PORT,()=>{
+
+app.listen(PORT,"0.0.0.0",()=>{
     DBConnect();
     console.log(`http://localhost:${PORT}`)
 })

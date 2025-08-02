@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { UseAppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import HappyMood from "../component/HappyMood";
+import toast from "react-hot-toast";
+import Spinner from "../component/Spinner";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -9,13 +11,18 @@ const CartPage = () => {
     totalCartPrice,
     cartItems,
     products,
+    user,
+    setCartItems,
     updateCartQuantity,
     removeFromCart,
     countCartItems,
+    axios,
   } = UseAppContext();
 
   const [cartArray, setCartArray] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState("COD");
+  const [address,setAddress] = useState('');
+  const [loading , setLoading] = useState(false);
 
   const getCart = () => {
     let cartData = [];
@@ -32,12 +39,39 @@ const CartPage = () => {
     setCartArray(cartData);
   };
 
-  console.log(cartArray);
+  const payOrder = async () => {
+    try {
+      if(!address) return toast.error("Address Required")
+
+
+      if (paymentMethod === "COD") {
+        // console.log(user._id)
+        setLoading(true)
+        const { data } = await axios.post("/api/order/cod", {
+          userId: user._id,
+          address,
+          items: cartArray.map((item) => ({
+            product: item._id,
+            quantity: item.quantity,
+          })),
+        });
+
+        if (data.success) {
+          toast.success(data.message);
+          setCartItems({});
+          navigate('/orders')
+        }
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error)
+    }finally{setLoading(false)}
+  };
+
+  // console.log(cartArray);
 
   useEffect(() => {
     if (products.length > 0 && cartItems) {
-      console.log("jbjk");
-
       getCart();
     }
   }, [products, cartItems]);
@@ -176,6 +210,8 @@ const CartPage = () => {
             <div className="mb-6">
               <p className="text-sm font-medium uppercase">Delivery Address</p>
               <input
+              value={address}
+               onChange={(e)=>setAddress(e.target.value)}
                 type="text"
                 placeholder="Enter your address"
                 className="w-full border border-gray-300 bg-white px-3 py-2 mt-2 outline-none"
@@ -214,10 +250,16 @@ const CartPage = () => {
                 <span>₹ {totalCartPrice() + (totalCartPrice() * 1) / 100}</span>
               </p>
             </div>
-
-            <button className="w-full py-3 mt-6 cursor-pointer bg-[#59a835] text-white font-medium hover:font-bold hover:bg-[#56913b] transition rounded-md">
+            {
+              loading ? <div className="mt-5"><Spinner/></div> :   <button
+              onClick={payOrder}
+              className="w-full py-3 mt-6 cursor-pointer bg-[#59a835] text-white font-medium hover:font-bold hover:bg-[#56913b] transition rounded-md"
+            >
               {paymentMethod === "COD" ? "Place Order" : "Pay Online"}
             </button>
+            }
+
+          
           </div>
         </div>
 

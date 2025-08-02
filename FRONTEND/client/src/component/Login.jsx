@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { UseAppContext } from '../context/AppContext';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Spinner from './Spinner';
 
 const Login = () => {
-    const [state, setState] = React.useState("login");
+    const [state, setState] = useState("login");
      const {showUserlogin,setShowUserLogin,setUser ,axios} = UseAppContext();
-    const [name, setName] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [loading,setLoading] = useState(false)
 
     const loginHandle = async (e)=>{
        try {
         e.preventDefault();
+        setLoading(true)
         const {data} = await axios.post(`/api/user/${state}`,{
             name,email,password
         })
@@ -28,7 +31,7 @@ const Login = () => {
        } catch (error) {
         console.log(error)
         toast.error(error.response.data.message)
-       }
+       }finally{( setLoading(false))}
       
         
 
@@ -63,9 +66,15 @@ const Login = () => {
                     Create an account? <span onClick={() => setState("register")} className="text-[#59a835] cursor-pointer">click here</span>
                 </p>
             )}
+            {
+                loading ? <Spinner/> :
+            
+
             <button onClick={loginHandle} className="bg-[#59a835] hover:bg-[#8aca6c] transition-all text-white w-full py-2 rounded-md cursor-pointer">
                 {state === "register" ? "Create Account" : "Login"}
             </button>
+
+            }
         </form>
         </div>
 

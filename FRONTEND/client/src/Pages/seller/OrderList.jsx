@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { assets, dummyOrders } from "../../assets/assets";
+import { assets } from "../../assets/assets";
+import { UseAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
+  const {axios} = UseAppContext();
 
   const fetchOrders = async () => {
-    setOrders(dummyOrders);
+    try {
+      const {data} =await axios.get('/api/order/seller');
+      if(data.success){
+        setOrders(data.orders)
+      }
+
+      
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+      
+    }
   };
 
   console.log(orders);
@@ -41,13 +55,9 @@ const OrderList = () => {
 
           <div className="text-sm">
             <p className="font-medium mb-1">
-              {order.address.firstName} {order.address.lastName}
+              {order.address}
             </p>
-            <p>
-              {order.address.street}, {order.address.city},{" "}
-              {order.address.state},{order.address.zipcode},{" "}
-              {order.address.country}
-            </p>
+           
           </div>
 
           <p className="font-medium text-base my-auto text-black/70">
@@ -57,7 +67,7 @@ const OrderList = () => {
           <div className="flex flex-col text-sm font-bold">
             <p>Method: {order.paymentType}</p>
             <p>Date: {new Date(order.createdAt).toLocaleDateString()}</p>
-            <p  >Payment: <span className={`${order.isPaid ? " text-green-600" :"text-amber-400 "}`}></span></p>
+            <p  >Payment: <span className={`${order.isPaid ? " text-green-600" :"text-amber-400 "}`}>{order.isPaid ? " Paid" : " Pending"}</span></p>
           </div>
         </div>
       ))}

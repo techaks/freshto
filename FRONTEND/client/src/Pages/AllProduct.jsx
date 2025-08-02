@@ -8,6 +8,7 @@ const AllProduct = () => {
 
     const { products , searchQuery } = UseAppContext();
     const [filteredProducts, setFilteredProducts] = useState([]);
+        const [loading,setLoading] = useState(false)
 
 
 

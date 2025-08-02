@@ -34,7 +34,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300">
-        <img className="w-24 h-12" src={assets.food_logo} alt="" />
+        <img onClick={()=>navigate('/')} className="w-24 h-12 cursor-pointer" src={assets.food_logo} alt="" />
         <div className="flex items-center gap-5 text-gray-500">
           <p>Hi! Admin</p>
           <button
