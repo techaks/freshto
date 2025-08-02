@@ -54,6 +54,9 @@ export const AppContextProvider=({ children }) => {
             const {data} = await axios.get('/api/user/is-auth');
             if(data.success){
                 setUser(data.user)
+                console.log(data.user);
+                setCartItems(data.user.cartItems)
+                
             }else  setUser(false)
             
         } catch (error) {
@@ -111,8 +114,9 @@ export const AppContextProvider=({ children }) => {
         const fetchCart = async ()=>{
             try {
                 const {data} = await axios.post('/api/cart/update',{cartItems})
-            if(! data.success){
                 console.log('data');
+            if(! data.success){
+                
                 
                 toast.error(data.message);
             }
@@ -123,7 +127,7 @@ export const AppContextProvider=({ children }) => {
             }
         }
 
-        if(user) fetchCart();
+     if(user) fetchCart();
 
     },[cartItems])
 

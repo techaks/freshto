@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import HappyMood from "../component/HappyMood";
 
 const CartPage = () => {
-
   const navigate = useNavigate();
   const {
     totalCartPrice,
@@ -18,20 +17,27 @@ const CartPage = () => {
   const [cartArray, setCartArray] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState("COD");
 
-  console.log(cartItems);
-
   const getCart = () => {
     let cartData = [];
     for (const item in cartItems) {
-      const product = products.find((prod) => prod._id === item);
+      console.log(item);
+
+      const product = products.find(
+        (prod) => String(prod._id) === String(item)
+      );
       product.quantity = cartItems[item];
       cartData.push(product);
+      console.log(product);
     }
     setCartArray(cartData);
   };
 
+  console.log(cartArray);
+
   useEffect(() => {
     if (products.length > 0 && cartItems) {
+      console.log("jbjk");
+
       getCart();
     }
   }, [products, cartItems]);
