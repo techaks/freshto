@@ -22,7 +22,7 @@ const MyOrders = () => {
     }
 
   };
-  // console.log(orders);
+
 
   useEffect(() => {
     if(user) {fetchOrders();}
