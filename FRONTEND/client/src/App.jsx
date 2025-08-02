@@ -16,6 +16,8 @@ import Dashboard from "./Pages/seller/Dashboard";
 import OrderList from "./Pages/seller/OrderList";
 import ProductList from "./Pages/seller/ProductList";
 import AddProducts from "./Pages/seller/AddProducts";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
 
 const App = () => {
   const { showUserlogin, isSeller } = UseAppContext();
@@ -31,6 +33,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Error />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<AllProduct />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/product/:category" element={<ProductCategory />} />

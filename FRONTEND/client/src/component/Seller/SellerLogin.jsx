@@ -3,6 +3,7 @@ import { UseAppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
 import toast from 'react-hot-toast';
+import Spinner from '../Spinner';
 
 const SellerLogin = () => {
 
@@ -10,10 +11,12 @@ const SellerLogin = () => {
     const [password, setPassword] = useState("");
     const { setIsSeller ,isSeller , axios} = UseAppContext();
     const navigate = useNavigate();
+    const[loader,setLoader] = useState(false)
 
     const LoginHandel =async (e)=>{
        try {
          e.preventDefault();
+         setLoader(true)
          const {data} = await axios.post('/api/seller/login',{email,password});
 
         //  console.log(data);
@@ -25,14 +28,18 @@ const SellerLogin = () => {
 
          }else{
             toast.error(data.response.data.message)
+            setIsSeller(false)
          }
 
 
         
        } catch (error) {
         console.log(error)
+        setIsSeller(false)
         toast.error(error?.response?.data?.message)
-       }
+       }finally{
+            setLoader(false)
+         }
        
     }
 
@@ -73,8 +80,10 @@ const SellerLogin = () => {
       
         type="password" placeholder="Password" required />
     </div>
-   
-    <button onClick={LoginHandel} type="submit" class="w-full mb-3 bg-[#59a835] hover:bg-[#74bb54] transition py-2.5 rounded text-white font-medium cursor-pointer">Log In</button>
+   { loader ? 
+    <div><Spinner/></div> : <button onClick={LoginHandel} type="submit" class="w-full mb-3 bg-[#59a835] hover:bg-[#74bb54] transition py-2.5 rounded text-white font-medium cursor-pointer">Log In</button>
+   }
+    
     
 </form>
 

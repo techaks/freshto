@@ -19,7 +19,7 @@ export const sellerLogin = async (req, res) => {
       res.cookie("sellerToken", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "strict",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         maxAge: 24 * 60 * 60 * 1000, // 1 day
       });
 
@@ -56,7 +56,7 @@ export const sellerLogout = async (req, res) => {
     res.clearCookie("sellerToken", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "None" : "strict",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     });
 
     return res.status(200).json({

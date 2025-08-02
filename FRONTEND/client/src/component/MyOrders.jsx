@@ -34,7 +34,7 @@ const MyOrders = () => {
       <p className="text-2xl font-bold  mt-10">My Orders</p>
       <div className="flex flex-col overflow-x-scroll">
         {orders.map((order, index) => (
-          <div className="font-semibold ">
+          <div className="font-semibold " key={index}>
            
             <div
               className="flex gap-2 justify-between items-center border-b py-4"

@@ -68,6 +68,35 @@ const CartPage = () => {
     }finally{setLoading(false)}
   };
 
+  const payOnline = async () => {
+    try {
+      if(!address) return toast.error("Address Required")
+
+
+      if (paymentMethod === "Online") {
+        // console.log(user._id)
+        setLoading(true)
+        const { data } = await axios.post("/api/order/online", {
+          userId: user._id,
+          address,
+          items: cartArray.map((item) => ({
+            product: item._id,
+            quantity: item.quantity,
+          })),
+        });
+
+        if (data.success) {
+          toast.success(data.message);
+          setCartItems({});
+          navigate('/orders')
+        }
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error)
+    }finally{setLoading(false)}
+  };
+
   // console.log(cartArray);
 
   useEffect(() => {
@@ -250,9 +279,9 @@ const CartPage = () => {
                 <span>₹ {totalCartPrice() + (totalCartPrice() * 1) / 100}</span>
               </p>
             </div>
-            {
+            { //payOnline  payOrder
               loading ? <div className="mt-5"><Spinner/></div> :   <button
-              onClick={payOrder}
+              onClick={paymentMethod === "COD" ? payOrder : payOnline}
               className="w-full py-3 mt-6 cursor-pointer bg-[#59a835] text-white font-medium hover:font-bold hover:bg-[#56913b] transition rounded-md"
             >
               {paymentMethod === "COD" ? "Place Order" : "Pay Online"}

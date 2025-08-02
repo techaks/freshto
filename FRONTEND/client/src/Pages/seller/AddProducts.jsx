@@ -2,6 +2,7 @@ import { useState } from "react";
 import { assets, categories } from "../../assets/assets";
 import { UseAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
+import Spinner from "../../component/Spinner";
 
 const AddProducts = () => {
   const [files, setFiles] = useState([]);
@@ -10,6 +11,7 @@ const AddProducts = () => {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [offerPrice, setOfferPrice] = useState("");
+  const [loader,setLoader] =useState(false);
 
   const{axios} = UseAppContext();
 
@@ -18,6 +20,7 @@ const AddProducts = () => {
   const fileSubmit = async(e) => {
     try {
       e.preventDefault();
+      setLoader(true)
       const productData = {
         name,description,category,price,offerPrice
       }
@@ -49,6 +52,8 @@ const AddProducts = () => {
         console.log(error);
         toast.error(error.message)
 
+    }finally{
+      setLoader(false)
     }
   };
 
@@ -165,12 +170,20 @@ const AddProducts = () => {
             />
           </div>
         </div>
+
+        {
+         loader ?  <div className="mt-10"><Spinner/></div> :
+       
+
         <button
           onClick={fileSubmit}
           className="px-8 py-2.5 bg-green-500 hover:bg-green-600 cursor-pointer text-white font-medium rounded"
         >
           ADD
         </button>
+
+         }
+
       </form>
     </div>
   );
