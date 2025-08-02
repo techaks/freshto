@@ -57,7 +57,7 @@ const OrderList = () => {
           <div className="flex flex-col text-sm font-bold">
             <p>Method: {order.paymentType}</p>
             <p>Date: {new Date(order.createdAt).toLocaleDateString()}</p>
-            <p  >Payment: <span className={`${order.isPaid ? " text-green-600" :"text-amber-400 "}`}>{order.isPaid ? "Paid" : "Pending"}</span></p>
+            <p  >Payment: <span className={`${order.isPaid ? " text-green-600" :"text-amber-400 "}`}></span></p>
           </div>
         </div>
       ))}

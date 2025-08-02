@@ -6,22 +6,22 @@ import NoFound from '../component/NoFound';
 
 const AllProduct = () => {
 
-    const { product , searchQuery } = UseAppContext();
+    const { products , searchQuery } = UseAppContext();
     const [filteredProducts, setFilteredProducts] = useState([]);
 
 
 
     useEffect(()=>{
         if (searchQuery.trim() !== "") {
-            const filtered = product.filter(item =>
+            const filtered = products.filter(item =>
                 item.name.toLowerCase().includes(searchQuery.toLowerCase())
             );
             setFilteredProducts(filtered);
         } else {
-            setFilteredProducts(product);
+            setFilteredProducts(products);
         }
 
-    },[searchQuery, product]);
+    },[searchQuery, products]);
 
 
 

@@ -6,7 +6,7 @@ import ProductCard from "./ProductCard";
 
 const ProductDetail = () => {
   const { addToCart } = UseAppContext();
-  const products = UseAppContext().product;
+  const {products} = UseAppContext();
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -26,8 +26,8 @@ const ProductDetail = () => {
   }, [products , id]);
 
   useEffect(() => {
-    setThumbnail(product?.image[0]);
-  }, [product]);
+    setThumbnail(product?.images[0]);
+  }, [products]);
 
   return (
     product && (
@@ -41,7 +41,7 @@ const ProductDetail = () => {
         <div className="flex flex-col md:flex-row gap-16 mt-4">
           <div className="flex gap-3">
             <div className="flex flex-col gap-3">
-              {product.image.map((image, index) => (
+              {product.images.map((image, index) => (
                 <div
                   key={index}
                   onClick={() => setThumbnail(image)}
@@ -88,9 +88,7 @@ const ProductDetail = () => {
 
             <p className="text-base font-medium mt-6">About Product</p>
             <ul className="list-disc ml-4 text-gray-500/70">
-              {product.description.map((desc, index) => (
-                <li key={index}>{desc}</li>
-              ))}
+              {product.description}
             </ul>
 
             <div className="flex items-center mt-10 gap-4 text-base">

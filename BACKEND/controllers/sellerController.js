@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 export const sellerLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -22,29 +24,25 @@ export const sellerLogin = async (req, res) => {
       });
 
       return res.status(200).json({
-        success:true,
-        message:"login success"
-      })
-
+        success: true,
+        message: "login success",
+      });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(400).json({
-        success:false,
-        message:"error"
-      })
+      success: false,
+      message: "error",
+    });
   }
 };
 
-
 export const isSellerAuth = async (req, res) => {
   try {
-   
     return res.status(200).json({
       success: true,
-        message: "Seller is authenticated",
+      message: "Seller is authenticated",
     });
-
   } catch (error) {
     console.log(error);
     return res.status(400).json({
@@ -53,31 +51,22 @@ export const isSellerAuth = async (req, res) => {
   }
 };
 
-
 export const sellerLogout = async (req, res) => {
-    try {
-        res.clearCookie("sellerToken",{
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.NODE_ENV === "production" ? "None" : "strict",
+  try {
+    res.clearCookie("sellerToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "strict",
+    });
 
-        })
-
-        return res.status(200).json({
-            message: "User logged out successfully",
-
-        })
-
-        
-    } catch (error) {
-        console.log(error)
-        return res.status(200).json({
-            message: "some error in logout",
-            
-        })
-        
-    }
-}
-
-
-
+    return res.status(200).json({
+      success:true,
+      message: "User logged out ",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({
+      message: "some error in logout",
+    });
+  }
+};

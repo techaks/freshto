@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import HappyMood from "../component/HappyMood";
 
 const CartPage = () => {
-  const [showAddress, setShowAddress] = useState(false);
+
   const navigate = useNavigate();
   const {
     totalCartPrice,
     cartItems,
-    product,
+    products,
     updateCartQuantity,
     removeFromCart,
     countCartItems,
@@ -18,26 +18,26 @@ const CartPage = () => {
   const [cartArray, setCartArray] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState("COD");
 
-  console.log(cartArray);
+  console.log(cartItems);
 
   const getCart = () => {
     let cartData = [];
     for (const item in cartItems) {
-      const products = product.find((prod) => prod._id === item);
-      products.quantity = cartItems[item];
-      cartData.push(products);
+      const product = products.find((prod) => prod._id === item);
+      product.quantity = cartItems[item];
+      cartData.push(product);
     }
     setCartArray(cartData);
   };
 
   useEffect(() => {
-    if (product.length > 0 && cartItems) {
+    if (products.length > 0 && cartItems) {
       getCart();
     }
-  }, [product, cartItems]);
+  }, [products, cartItems]);
 
   return (
-    product.length > 0 &&
+    products.length > 0 &&
     cartItems && (
       <>
         <div className="flex flex-col md:flex-row py-16 max-w-6xl w-full px-6 mx-auto">
@@ -70,7 +70,7 @@ const CartPage = () => {
                   >
                     <img
                       className="max-w-full h-full object-cover"
-                      src={product.image[0]}
+                      src={product.images[0]}
                       alt={product.name}
                     />
                   </div>

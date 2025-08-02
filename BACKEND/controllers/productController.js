@@ -2,6 +2,7 @@ import Product from "../models/Product.js";
 import {v2 as cloudinary}  from "cloudinary"
 
 
+
 export const addProduct = async (req,res)=>{
     try {
        let productData = JSON.parse(req.body.productData);
@@ -12,13 +13,15 @@ export const addProduct = async (req,res)=>{
                 let result = await  cloudinary.uploader.upload(item.path, {
                     resource_type: "image",
                 });
+                 console.log(result.secure_url)
                 return result.secure_url;
+                console.log(result.secure_url)
             })
          )
 
          await Product.create({
             ...productData,
-            image: imagesUrl,
+            images: imagesUrl,
          });
 
          return res.status(201).json({
@@ -40,7 +43,7 @@ export const addProduct = async (req,res)=>{
 
 export const productList = async (req,res)=>{
     try {
-        const products = await Product.find();
+        const products = await Product.find().sort({createdAt:-1});
         return res.status(200).json({
             success: true,
             products,

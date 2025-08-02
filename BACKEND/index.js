@@ -7,13 +7,15 @@ import userRoutes from './routes/userRoutes.js';
 import sellerRoute from './routes/sellerRoute.js';
 import cloudinaryConnect from './utility/Cloudinary.js';
 import productRouter from './routes/productRoute.js';
+import cartRouter from './routes/cartRoute.js';
+import orderRouter from './routes/orderroute.js';
 
 
 
 const app = express();
 
 app.use(cors({
-    origin: '*',
+    origin: 'http://localhost:5173',
     credentials: true,
 
 }))
@@ -36,5 +38,6 @@ app.get('/',(req,res)=>{
 app.use('/api/user',userRoutes);
 app.use('/api/seller',sellerRoute);
 app.use('/api/product',productRouter);
-
+app.use('/api/cart',cartRouter);
+app.use('/api/order',orderRouter);
 

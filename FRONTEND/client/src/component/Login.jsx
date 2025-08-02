@@ -1,20 +1,35 @@
 import React from 'react'
 import { UseAppContext } from '../context/AppContext';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [state, setState] = React.useState("login");
-     const {showUserlogin,setShowUserLogin,setUser} = UseAppContext();
+     const {showUserlogin,setShowUserLogin,setUser ,axios} = UseAppContext();
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const navigate = useNavigate();
 
-    const loginHandle =()=>{
-        setUser({
-            name: 'name',
-            email: 'email',
-            password: 'password'
+    const loginHandle = async (e)=>{
+       try {
+        e.preventDefault();
+        const {data} = await axios.post(`/api/user/${state}`,{
+            name,email,password
         })
-        setShowUserLogin(false);
+        if(data.success){
+            toast.success(data.message);
+            setShowUserLogin(false);
+            navigate('/');
+            setUser(data.user);
+        }
+
+        
+       } catch (error) {
+        console.log(error)
+        toast.error(error.response.data.message)
+       }
+      
         
 
     }

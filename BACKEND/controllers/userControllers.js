@@ -1,6 +1,7 @@
-import UserModel from "../models/User.js";
+
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 export const Register = async (req, res) => {
   try {
@@ -10,7 +11,7 @@ export const Register = async (req, res) => {
     }
 
     // Check if user already exists
-    const existingUser = await UserModel.findOne({ email });
+    const existingUser = await User.findOne({ email });
     console.log(existingUser);
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
@@ -19,7 +20,7 @@ export const Register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create new user
-    const newUser = await UserModel.create({
+    const newUser = await User.create({
       name,
       email,
       password: hashedPassword,
@@ -57,7 +58,7 @@ export const Login = async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
-    const user = await UserModel.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
@@ -96,7 +97,7 @@ export const isAuth = async (req, res) => {
     const { userId } = req.user;
     console.log(userId);
     
-    const user = await UserModel.findById(userId).select("-password");
+    const user = await User.findById(userId).select("-password");
     return res.status(200).json({
       success: true,
       user,
@@ -106,6 +107,7 @@ export const isAuth = async (req, res) => {
     console.log(error);
     return res.status(400).json({
       success: false,
+      message:"error"
     });
   }
 };
@@ -122,6 +124,7 @@ export const logout = async (req, res) => {
 
         return res.status(200).json({
             message: "User logged out successfully",
+            success:true
 
         })
 

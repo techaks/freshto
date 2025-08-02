@@ -2,14 +2,29 @@ import React from "react";
 import { assets } from "./../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { UseAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
-  const { user, setUser ,setShowUserLogin ,setSearchQuery,searchQuery , countCartItems , totalCartPrice}  = UseAppContext();
+  const { user, setUser ,setShowUserLogin ,setSearchQuery,searchQuery , countCartItems , totalCartPrice ,axios}  = UseAppContext();
   const navigate = useNavigate();
 
   const logout = async () => {
-    setUser(null);
+    try {
+      const {data} = await axios.get('/api/user/logout');
+      if(data.success){
+        setUser(null);
+        navigate('/');
+        toast.success(data.message);
+
+      }else toast.error(data.message)
+      
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message)
+      
+    }
+  
   };
   
   
@@ -27,10 +42,10 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
         <Link
-          to="/"
+          to="/seller"
           className="font-semibold text-gray-700 hover:text-indigo-500 transition"
         >
-          Home
+          Seller
         </Link>
          <Link
           to="/products"

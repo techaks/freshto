@@ -9,12 +9,12 @@ import ProductCard from '../component/ProductCard';
 const ProductCategory = () => {
 
     const {category} = useParams();
-    const {product} = UseAppContext();
+    const {products} = UseAppContext();
 
     const searchedCategory = categories.find((item)=>item.path.toLowerCase() === category.toLowerCase());
     console.log(searchedCategory);
 
-    const filterProducts = product.filter((item)=>item.category.toLowerCase()===category.toLowerCase())
+    const filterProducts = products.filter((item)=>item.category.toLowerCase()===category.toLowerCase())
    
   return  filterProducts && (
     <div>

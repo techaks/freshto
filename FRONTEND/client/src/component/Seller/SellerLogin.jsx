@@ -1,23 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import { UseAppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
-import Password from '../Password';
+
+import toast from 'react-hot-toast';
 
 const SellerLogin = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { setIsSeller  , isSeller} = UseAppContext();
+    const { setIsSeller ,isSeller , axios} = UseAppContext();
     const navigate = useNavigate();
 
-    const LoginHandel = (e)=>{
-        e.preventDefault();
-        if(email === "" || password === ""){
-            alert("Please fill all fields");
-            return;
-        }
-        setIsSeller(true);
+    const LoginHandel =async (e)=>{
+       try {
+         e.preventDefault();
+         const {data} = await axios.post('/api/seller/login',{email,password});
 
+        //  console.log(data);
+
+         if(data.success){
+            toast.success(data.message)
+            setIsSeller(true);
+            navigate('/seller');
+
+         }else{
+            toast.error(data.response.data.message)
+         }
+
+
+        
+       } catch (error) {
+        console.log(error)
+        toast.error(error?.response?.data?.message)
+       }
+       
     }
 
     
