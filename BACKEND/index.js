@@ -15,10 +15,9 @@ import orderRouter from './routes/orderroute.js';
 const app = express();
 
 app.use(cors({
-    origin: ['https://freshto-app.onrender.com'],
+    origin: 'https://freshto-app.onrender.com',
     credentials: true,
-
-}))
+}));
 app.use(express.json());    
 app.use(cookieParser())
 
