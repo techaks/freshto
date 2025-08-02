@@ -8,7 +8,7 @@ const About = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="max-w-5xl mx-auto"
+        className="max-w-5xl mx-auto " 
       >
         <h1 className="text-5xl font-bold mb-6 text-green-600">About FRESHTO</h1>
         <p className="text-lg leading-relaxed mb-8">
