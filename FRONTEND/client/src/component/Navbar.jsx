@@ -253,6 +253,7 @@ const Navbar = () => {
           <>
            <Link
           to="/products"
+          onClick={() => setOpen(false)}
           className=" font-semibold text-gray-700 hover:text-indigo-500 transition"
         >
           All Products
