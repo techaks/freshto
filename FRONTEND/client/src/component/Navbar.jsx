@@ -251,6 +251,12 @@ const Navbar = () => {
         </Link>
         {user && (
           <>
+           <Link
+          to="/products"
+          className=" font-semibold text-gray-700 hover:text-indigo-500 transition"
+        >
+          All Products
+        </Link>
             {" "}
             <Link
               to="/orders"
