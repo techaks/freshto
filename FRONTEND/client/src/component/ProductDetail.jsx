@@ -27,7 +27,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     setThumbnail(product?.images[0]);
-  }, [products]);
+  }, [products , id]);
 
   return (
     product && (
