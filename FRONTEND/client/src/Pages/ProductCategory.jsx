@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { UseAppContext } from '../context/AppContext';
 import { categories } from '../assets/assets';
 import ProductCard from '../component/ProductCard';
+import Spinner from '../component/Spinner';
 
 
 
@@ -16,7 +17,7 @@ const ProductCategory = () => {
 
     const filterProducts = products.filter((item)=>item.category.toLowerCase()===category.toLowerCase())
    
-  return  filterProducts && (
+  return  filterProducts.length > 0 ? (
     <div>
 
         <p className='font-bold text-xl mt-10 mx-10'>{searchedCategory.text}</p>
@@ -30,7 +31,7 @@ const ProductCategory = () => {
         </div>
       
     </div>
-  )
+  ): <Spinner/>
 }
 
 export default ProductCategory

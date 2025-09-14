@@ -6,7 +6,7 @@ const ShimmerLoader = () => {
       {Array.from({ length: 5 }).map((_, idx) => (
         <div
           key={idx}
-          className="w-[200px] h-[120px] bg-gray-500 rounded-lg animate-pulse"
+          className="w-[200px] h-[200px] bg-gray-500 rounded-lg animate-pulse"
         ></div>
       ))}
     </div>

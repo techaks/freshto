@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { UseAppContext } from '../context/AppContext';
 import ProductCard from '../component/ProductCard';
 import NoFound from '../component/NoFound';
+import ShimmerLoader from '../component/Shimmer';
 
 
 const AllProduct = () => {
@@ -38,7 +39,7 @@ const AllProduct = () => {
         </div>
       
     </div>
-  ):<NoFound/>
+  ):<ShimmerLoader/>
 }
 
 export default AllProduct
