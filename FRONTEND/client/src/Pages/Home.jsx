@@ -5,6 +5,7 @@ import Bestseller from '../component/Bestseller'
 import Delivery from '../component/Delivery'
 import Spinner from '../component/Spinner'
 import { UseAppContext } from '../context/AppContext'
+import ShimmerLoader from '../component/Shimmer'
 
 
 const Home = () => {
@@ -16,9 +17,10 @@ const Home = () => {
         <Categories/>
 
         {
-          products ? <Bestseller/> : <Spinner/>
+          products.length > 0 ? <Bestseller/> : <ShimmerLoader  />
         }
-
+   
+       
         
 
         <Delivery/>

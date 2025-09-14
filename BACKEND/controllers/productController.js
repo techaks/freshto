@@ -15,7 +15,7 @@ export const addProduct = async (req,res)=>{
                 });
                  console.log(result.secure_url)
                 return result.secure_url;
-                console.log(result.secure_url)
+            
             })
          )
 
